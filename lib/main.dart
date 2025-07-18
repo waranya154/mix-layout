@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My waranya App',
+      title: 'My Waranya App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
@@ -43,7 +43,51 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My waranya App 💖'),
+        title: Text('My Waranya App 💖'),
+      ),
+      // ✅ เพิ่ม Drawer ที่สมบูรณ์
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Text(
+                'เมนูหลัก',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: const Text('หน้าแรก'),
+              onTap: () {
+                Navigator.pop(context); // ปิด Drawer
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.image),
+              title: const Text('แกลเลอรี่'),
+              onTap: () {
+                Navigator.pop(context); // ปิด Drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => GalleryPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.list),
+              title: const Text('รายการสินค้า'),
+              onTap: () {
+                Navigator.pop(context); // ปิด Drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProductPage()),
+                );
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: Column(
